@@ -45,8 +45,22 @@ public class Sorting {
         System.out.println("Sorted Array: " + Arrays.toString(arr) + " swapped " + swapCounter + " times");
     }
 
+    public static void insertionSort(int[] arr){
+        int temp;
+        for(int i = 1, j; i < arr.length; i++){
+            temp = arr[i];
+            for(j = i - 1; j >= 0 && temp < arr[j]; j--){
+                arr[j+1] = arr[j];
+            }
+            arr[j+1] = temp;
+        }
+
+        System.out.println(Arrays.toString(arr));
+    }
+
     public static void main(String[] args) {
 //        bubbleSort(new int[]{8,1,2,3,4,5,6,7});
-        selectionSort(new int[]{2,1,4,5,76,78,8,3,4,56,0,4,3,5,6,7});
+//        selectionSort(new int[]{2,1,4,5,76,78,8,3,4,56,0,4,3,5,6,7});
+//        insertionSort(new int[]{2,1,4,5,76,78,8,3,4,56,0,4,3,5,6,7});
     }
 }
