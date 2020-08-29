@@ -58,9 +58,54 @@ public class Sorting {
         System.out.println(Arrays.toString(arr));
     }
 
+    public static int[] mergeSort(int[] arr){
+        if(arr.length <= 1){
+            return arr;
+        }
+        int mid = arr.length/2;
+        int[] leftArray = Arrays.copyOfRange(arr, 0, mid);
+        int[] rightArray = Arrays.copyOfRange(arr, mid, arr.length);
+
+        leftArray = mergeSort(leftArray);
+        rightArray = mergeSort(rightArray);
+
+        return merge(leftArray, rightArray);
+    }
+
+    public static int[] merge(int[] a, int[] b){
+        int i = 0, j = 0, counter = 0;
+        int[] result = new int[a.length+b.length];
+
+        while(i < a.length && j < b.length){
+            if(a[i] <= b[j]){
+                result[counter] = a[i];
+                i++;
+            }
+            else {
+                result[counter] = b[j];
+                j++;
+            }
+            counter++;
+        }
+        while(i < a.length){
+            result[counter] = a[i];
+            i++;
+            counter++;
+        }
+        while(j < b.length){
+            result[counter] = b[j];
+            j++;
+            counter++;
+        }
+
+        return result;
+    }
+
     public static void main(String[] args) {
 //        bubbleSort(new int[]{8,1,2,3,4,5,6,7});
 //        selectionSort(new int[]{2,1,4,5,76,78,8,3,4,56,0,4,3,5,6,7});
 //        insertionSort(new int[]{2,1,4,5,76,78,8,3,4,56,0,4,3,5,6,7});
+//        int[] result = mergeSort(new int[]{2,1,4,5,76,78,8,3,4,56,0,4,3,5,6,7});
+//        System.out.println(Arrays.toString(result));
     }
 }
